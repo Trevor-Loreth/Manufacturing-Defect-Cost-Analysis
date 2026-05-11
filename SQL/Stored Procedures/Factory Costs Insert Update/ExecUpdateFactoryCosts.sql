@@ -1,4 +1,4 @@
-EXEC InsertFactoryCost
+EXEC UpdateFactoryCost
     @Component = 'Blades',
     @Factory = 'Bothell WA',
-    @UnitCost = 35.00;
+    @NewUnitCost = 38.50;
