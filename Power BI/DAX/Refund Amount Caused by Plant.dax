@@ -1,0 +1,2 @@
+Refund Amount Caused by Plant = 
+SUM('Plant Defect Impact'[Refund Amount])
