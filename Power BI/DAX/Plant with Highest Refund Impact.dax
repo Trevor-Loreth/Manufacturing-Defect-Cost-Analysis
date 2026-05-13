@@ -1,0 +1,41 @@
+Plant with Highest Refund Impact = 
+VAR SelectedPartTypes =
+    VALUES('Parts Used'[Part Type])
+
+VAR PlantRefunds =
+    ADDCOLUMNS(
+        ALLSELECTED('Plant Defect Impact'[Factory]),
+        "RefundTotal",
+            CALCULATE(
+                [Refund Amount Caused by Plant],
+                TREATAS(
+                    SelectedPartTypes,
+                    'Plant Defect Impact'[Part Type]
+                )
+            )
+    )
+
+VAR TopPlant =
+    TOPN(
+        1,
+        PlantRefunds,
+        [RefundTotal],
+        DESC,
+        'Plant Defect Impact'[Factory],
+        ASC
+    )
+
+VAR PlantName =
+    MAXX(
+        TopPlant,
+        'Plant Defect Impact'[Factory]
+    )
+
+VAR RefundAmount =
+    MAXX(
+        TopPlant,
+        [RefundTotal]
+    )
+
+RETURN
+    PlantName & " - " & FORMAT(RefundAmount, "$#,##0.00")
