@@ -1,0 +1,2 @@
+Defective Returns Caused by Plant = 
+DISTINCTCOUNT('Plant Defect Impact'[Product Serial #])
