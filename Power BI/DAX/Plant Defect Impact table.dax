@@ -1,0 +1,32 @@
+Plant Defect Impact = 
+FILTER(
+    ADDCOLUMNS(
+        'Parts Used',
+
+        "Defect",
+            LOOKUPVALUE(
+                Returns[Defect: y/n],
+                Returns[Product Serial #], 'Parts Used'[Product Serial #]
+            ),
+
+        "Defect Part",
+            LOOKUPVALUE(
+                Returns[Defect Part],
+                Returns[Product Serial #], 'Parts Used'[Product Serial #]
+            ),
+
+        "Refund Amount",
+            LOOKUPVALUE(
+                Returns[Refund Amount],
+                Returns[Product Serial #], 'Parts Used'[Product Serial #]
+            ),
+
+        "Return Date",
+            LOOKUPVALUE(
+                Returns[Return Date],
+                Returns[Product Serial #], 'Parts Used'[Product Serial #]
+            )
+    ),
+    [Defect] = "Y"
+        && 'Parts Used'[Part Type] = [Defect Part]
+)
