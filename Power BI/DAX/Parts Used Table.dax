@@ -1,0 +1,51 @@
+Parts Used = 
+UNION(
+    SELECTCOLUMNS(
+        Inventory,
+        "Product Serial #", Inventory[Product Serial #],
+        "Part Type", "Blades",
+        "Part Serial #", Inventory[Blades Serial #],
+        "Factory",
+            LOOKUPVALUE(
+                Blades[Factory],
+                Blades[Blades Serial #], Inventory[Blades Serial #]
+            ),
+        "Part Cost",
+            LOOKUPVALUE(
+                Blades[Unit Cost],
+                Blades[Blades Serial #], Inventory[Blades Serial #]
+            )
+    ),
+    SELECTCOLUMNS(
+        Inventory,
+        "Product Serial #", Inventory[Product Serial #],
+        "Part Type", "Motor",
+        "Part Serial #", Inventory[Motor Serial #],
+        "Factory",
+            LOOKUPVALUE(
+                Motor[Factory],
+                Motor[Motor Serial #], Inventory[Motor Serial #]
+            ),
+        "Part Cost",
+            LOOKUPVALUE(
+                Motor[Unit Cost],
+                Motor[Motor Serial #], Inventory[Motor Serial #]
+            )
+    ),
+    SELECTCOLUMNS(
+        Inventory,
+        "Product Serial #", Inventory[Product Serial #],
+        "Part Type", "Frame",
+        "Part Serial #", Inventory[Frame Serial #],
+        "Factory",
+            LOOKUPVALUE(
+                Frame[Factory],
+                Frame[Frame Serial #], Inventory[Frame Serial #]
+            ),
+        "Part Cost",
+            LOOKUPVALUE(
+                Frame[Unit Cost],
+                Frame[Frame Serial #], Inventory[Frame Serial #]
+            )
+    )
+)
