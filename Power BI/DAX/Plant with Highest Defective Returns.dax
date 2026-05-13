@@ -1,0 +1,41 @@
+Plant with Highest Defective Returns = 
+VAR SelectedPartTypes =
+    VALUES('Parts Used'[Part Type])
+
+VAR PlantReturns =
+    ADDCOLUMNS(
+        ALLSELECTED('Plant Defect Impact'[Factory]),
+        "ReturnTotal",
+            CALCULATE(
+                [Defective Returns Caused by Plant],
+                TREATAS(
+                    SelectedPartTypes,
+                    'Plant Defect Impact'[Part Type]
+                )
+            )
+    )
+
+VAR TopPlant =
+    TOPN(
+        1,
+        PlantReturns,
+        [ReturnTotal],
+        DESC,
+        'Plant Defect Impact'[Factory],
+        ASC
+    )
+
+VAR PlantName =
+    MAXX(
+        TopPlant,
+        'Plant Defect Impact'[Factory]
+    )
+
+VAR ReturnCount =
+    MAXX(
+        TopPlant,
+        [ReturnTotal]
+    )
+
+RETURN
+    PlantName & " - " & FORMAT(ReturnCount, "#,##0") & " returns"
