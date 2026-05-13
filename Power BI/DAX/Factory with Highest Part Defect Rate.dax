@@ -1,0 +1,31 @@
+Factory with Highest Part Defect Rate = 
+VAR FactoryRates =
+    ADDCOLUMNS(
+        VALUES('Parts Used'[Factory]),
+        "DefectRate", [Part Defect Rate]
+    )
+
+VAR TopFactory =
+    TOPN(
+        1,
+        FactoryRates,
+        [DefectRate],
+        DESC,
+        'Parts Used'[Factory],
+        ASC
+    )
+
+VAR FactoryName =
+    MAXX(
+        TopFactory,
+        'Parts Used'[Factory]
+    )
+
+VAR RateValue =
+    MAXX(
+        TopFactory,
+        [DefectRate]
+    )
+
+RETURN
+    FactoryName & " - " & FORMAT(RateValue, "0.00%")
