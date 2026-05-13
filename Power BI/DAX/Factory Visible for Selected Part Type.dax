@@ -1,0 +1,19 @@
+Factory Visible for Selected Part Type = 
+VAR SelectedPartTypes =
+    VALUES('Parts Used'[Part Type])
+
+VAR CurrentFactories =
+    VALUES('Plant Defect Impact'[Factory])
+
+VAR MatchingRows =
+    CALCULATE(
+        COUNTROWS('Plant Defect Impact'),
+        FILTER(
+            ALLSELECTED('Plant Defect Impact'),
+            'Plant Defect Impact'[Factory] IN CurrentFactories
+                && 'Plant Defect Impact'[Part Type] IN SelectedPartTypes
+        )
+    )
+
+RETURN
+    MatchingRows
