@@ -1,3 +1,4 @@
 ## MISC SQL and SSMS
+- [**Stored Procedures:**](https://github.com/Trevor-Loreth/Manufacturing-Defect-Cost-Analysis/tree/main/SQL/Stored%20Procedures) Several stored procedures were created using T-SQL to INSERT new rows into each table. Each stored procedure works as a repeatable INSERT statement, allowing someone not familiar with SQL to easily execute an INSERT statement. Each stored procedure has built-in error checking to prevent invalid data entry. Additionally, each stored procedure comes with its EXECUTE query, requiring the user to type data in the corresponding column and then run the EXECUTE.
 - **Update Costs For Sales Table.sql:** Joins the Inventory, Blades, Motor, and Frame tables to calculate/correct and UPDATE the Cost column in the Sales table.
 - **Zoom Drones SSMS Database Diagram.PNG:** A relational database diagram created in SSMS to create and show the relationships between the tables within the database.
