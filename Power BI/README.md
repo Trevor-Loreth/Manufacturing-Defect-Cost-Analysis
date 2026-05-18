@@ -20,3 +20,4 @@
   - **Plant with Highest Part Defect Rate:** A KPI card displaying the plant with the highest part defect rate and the defect rate of that plant. Utilizes the DAX measure Factory with Highest Part Defect Rate.
   - **Plant with Highest Defective Returns:** A KPI card displaying the plant causing the highest number of returns caused by defects, alongside the number of returns. Utilizes the DAX measure Plant with Highest Defective Returns.
   - **Plant with Highest Refund Impact:** A KPI card displaying the plant causing the highest dollar amount of returns, alongside that dollar amount. Utilizes the DAX measure Plant with Highest Refund Impact.
+### [DAX](https://github.com/Trevor-Loreth/Manufacturing-Defect-Cost-Analysis/tree/main/Power%20BI/DAX)
