@@ -1,0 +1,12 @@
+Part Defect Rate = 
+DIVIDE(
+    CALCULATE(
+        DISTINCTCOUNT(Returns[Product Serial #]),
+        Returns[Defect: y/n] = "Y",
+        TREATAS(
+            VALUES('Parts Used'[Product Serial #]),
+            Returns[Product Serial #]
+        )
+    ),
+    DISTINCTCOUNT('Parts Used'[Product Serial #])
+)
